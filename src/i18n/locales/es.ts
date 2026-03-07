@@ -22,8 +22,28 @@ export default {
   miners: {
     title: 'Mineros',
     description: 'Extraer hierro (+{amount} hierro)',
-    mineBtn: 'Extraer hierro',
+    mineBtn: {
+      iron: 'Extraer hierro',
+      stone: 'Extraer piedra',
+    },
+    hireBtn: 'Contratar minero',
     iron: 'Hierro',
+    stone: 'Piedra',
+    minersCount: 'Mineros: {count}',
+  },
+  upgrades: {
+    'hire-lumberjack': {
+      name: 'Contratar leñador',
+      description: 'Un leñador cortará madera por ti',
+    },
+    'hire-miner': {
+      name: 'Contratar minero',
+      description: 'Un minero extraerá hierro y piedra',
+    },
+    'hire-tax-collector': {
+      name: 'Construir casas',
+      description: 'Construir casas para aumentar la población y los impuestos',
+    },
   },
   common: {
     language: 'Idioma',

@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { useKingdomStore } from '@/stores/kingdom'
+import { useKingdom } from '@/composables/useKingdom'
+import ResourceWithPop from './ResourceWithPop.vue'
 
-const kingdom = useKingdomStore()
+const { gold, wood, iron, stone, resources } = useKingdom()
 </script>
 
 <template>
   <div class="flex gap-6 px-4 py-3 bg-neutral-800 text-white rounded-lg text-lg font-semibold">
-    <span>{{ kingdom.resources.gold.icon }} {{ kingdom.gold }}</span>
-    <span>{{ kingdom.resources.wood.icon }} {{ kingdom.wood }}</span>
-    <span>{{ kingdom.resources.iron.icon }} {{ kingdom.iron }}</span>
+    <ResourceWithPop :value="gold" :icon="resources.gold.icon" />
+    <ResourceWithPop :value="wood" :icon="resources.wood.icon" />
+    <ResourceWithPop :value="iron" :icon="resources.iron.icon" />
+    <ResourceWithPop :value="stone" :icon="resources.stone.icon" />
   </div>
 </template>

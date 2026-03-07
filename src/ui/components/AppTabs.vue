@@ -1,15 +1,26 @@
 <script setup lang="ts">
 import { RouterLink, useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { useKingdom } from '@/composables/useKingdom'
+import { computed } from 'vue'
 
 const route = useRoute()
 const { t } = useI18n()
 
-const tabs = [
-  { path: '/', nameKey: 'tabs.taxes', icon: '🪙' },
-  { path: '/leñadores', nameKey: 'tabs.lumberjacks', icon: '🪵' },
-  { path: '/mineros', nameKey: 'tabs.miners', icon: '⛏️' },
-]
+const { lumberjacks, miners } = useKingdom()
+
+const showLumberjacksTab = computed(() => lumberjacks.count.value > 0)
+const showMinersTab = computed(() => miners.count.value > 0)
+
+const tabs = computed(() => {
+  return [
+    { path: '/', nameKey: 'tabs.taxes', icon: '🪙' },
+    ...(showLumberjacksTab.value
+      ? [{ path: '/leñadores', nameKey: 'tabs.lumberjacks', icon: '🪵' }]
+      : []),
+    ...(showMinersTab.value ? [{ path: '/mineros', nameKey: 'tabs.miners', icon: '⛏️' }] : []),
+  ]
+})
 </script>
 
 <template>
